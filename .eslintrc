@@ -1,0 +1,9 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "func-names": ["error", "never"]
+    },
+    "env": {
+        "jest": true
+    }
+}
