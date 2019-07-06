@@ -10,7 +10,7 @@ export class Game {
   winningPitcher: Pitcher;
   losingPitcher: Pitcher;
   savePitcher: Pitcher;
-  homeruns: [Player];
+  // homeruns: [Player];
   awaywin: number;
   awayloss: number;
   awaycity: string;
@@ -28,18 +28,18 @@ export class Game {
   amPm: string;
   venue: string;
 
-  constructor(gamePk: number, status: Status, linescore: Linescore, winningPitcher: Pitcher, 
-    losingPitcher: Pitcher, savePitcher: Pitcher, homeruns: [Player], awaywin: number, 
-    awayloss: number, awaycity: string, awayname: string, awayabv: string, homewin: number, 
-    homeloss: number, homecity: string, homename: string, homeabv: string, location: string, 
-    series: string, statsseason: number, timedate: string, amPm: string, venue: string) { 
+  constructor(gamePk: number, status: Status, linescore: Linescore, winningPitcher: Pitcher,
+    losingPitcher: Pitcher, savePitcher: Pitcher, awaywin: number,
+    awayloss: number, awaycity: string, awayname: string, awayabv: string, homewin: number,
+    homeloss: number, homecity: string, homename: string, homeabv: string, location: string,
+    series: string, statsseason: number, timedate: string, amPm: string, venue: string) {
       this.gamePk = gamePk;
       this.status = status;
       this.linescore = linescore;
       this.winningPitcher = winningPitcher;
       this.losingPitcher = losingPitcher;
       this.savePitcher = savePitcher;
-      this.homeruns = homeruns;
+      // this.homeruns = homeruns;
       this.awaywin = awaywin;
       this.awayloss = awayloss;
       this.awaycity = awaycity;

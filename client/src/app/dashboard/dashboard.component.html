@@ -9,12 +9,12 @@
                 <mat-grid-list cols="2" rowHeight="2:1">
                     <mat-grid-tile>
                         <div>
-                            <span class="team">{{ games.team1 }}</span>
+                            <span class="team">{{ games.home_name_abbrev }}</span>
                         </div>
                     </mat-grid-tile>
                     <mat-grid-tile>
                         <div>
-                            <span class="team">{{ games.team2 }}</span>
+                            <span class="team">{{ games.away_name_abbrev }}</span>
                         </div>
                     </mat-grid-tile>
                     <mat-grid-tile>
@@ -28,8 +28,8 @@
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>
-                <span class="span">Inning: {{ games.inning }}</span>
-                <span class="span">Outs: {{ games.outs }}</span>
+                <span class="span">Inning: {{ games.status.inning_state.substring(0, 3) }} {{ games.status.inning }}</span>
+                <span class="span">Outs: {{ games.status.outs }}</span>
             </mat-card-content>
         </mat-card>
     </div>

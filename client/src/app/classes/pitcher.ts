@@ -8,7 +8,7 @@ export class Pitcher {
   number: number;
   win: number;
 
-  constructor(era: number, first: string, id: number, last: string, losses: number, 
+  constructor(era: number, first: string, id: number, last: string, losses: number,
     name_display_roster: string, number: number, win: number) {
       this.era = era;
       this.first = first;
