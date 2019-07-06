@@ -9,13 +9,15 @@ import { AppMaterialModule } from './app-material';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
+import { AddCardsComponent } from './add-cards/add-cards.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    GameDetailComponent
+    GameDetailComponent,
+    AddCardsComponent
   ],
   imports: [
     BrowserModule,
