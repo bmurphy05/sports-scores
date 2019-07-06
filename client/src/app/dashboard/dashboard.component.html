@@ -1,1 +1,36 @@
-<app-card></app-card>
+<div fxLayout="row wrap" fxFlex.md="70" class="card-deck-container mat-elevation-z4" fxLayoutGap="0.5%"
+    fxLayoutAlign="center">
+    <div fxFlex *ngFor="let games of gamesDisplayed" class="card-item">
+        <mat-card class="game-card">
+            <mat-card-header class="card-header">
+                <mat-card-title>MLB</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="status-container">
+                <mat-grid-list cols="2" rowHeight="2:1">
+                    <mat-grid-tile>
+                        <div>
+                            <span class="team">{{ games.team1 }}</span>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <div>
+                            <span class="team">{{ games.team2 }}</span>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <div>
+                            <span class="score">{{ games.score1 }}</span>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <div>
+                            <span class="score">{{ games.score2 }}</span>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <span class="span">Inning: {{ games.inning }}</span>
+                <span class="span">Outs: {{ games.outs }}</span>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

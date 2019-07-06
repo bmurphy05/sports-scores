@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MockDataService } from '../services/mock-data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  gamesDisplayed: Array<any>;
+  constructor(private mockData: MockDataService) { }
 
   ngOnInit() {
+    this.gamesDisplayed = this.mockData.getGames();
   }
 
 }
