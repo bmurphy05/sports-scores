@@ -9,7 +9,6 @@ import { AppMaterialModule } from './app-material';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
-import { AddCardsComponent } from './add-cards/add-cards.component';
 import { CardComponent } from './card/card.component';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { CardComponent } from './card/card.component';
     NavbarComponent,
     DashboardComponent,
     GameDetailComponent,
-    AddCardsComponent,
     CardComponent
   ],
   imports: [
