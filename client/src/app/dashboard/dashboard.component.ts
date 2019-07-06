@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MockDataService } from '../services/mock-data.service';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { DataService } from '../services/data.service';
 })
 export class DashboardComponent implements OnInit {
   gamesDisplayed: Array<any>;
-  constructor(private mockData: MockDataService, private data: DataService) { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
   //  this.gamesDisplayed = this.mockData.getGames();
@@ -18,4 +17,15 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  sumScore(scores: number[]): number {
+    let result = 0;
+
+    for(let i = 0; i < scores.length; i++) {
+      console.log(`Iteration: ${i} Runs: ${scores[i]}`);
+      result = parseInt(result.toString(), 10) + parseInt(scores[i].toString(), 10);
+    }
+
+    console.log(`Result: ${result}`);
+    return result;
+  }
 }

@@ -19,12 +19,14 @@
                     </mat-grid-tile>
                     <mat-grid-tile>
                         <div>
-                            <span class="score">{{ games.score1 }}</span>
+                            <span class="score">{{ sumScore(games.linescore.inning[0].home, games.linescore.inning[1].home, games.linescore.inning[2].home, games.linescore.inning[3].home, games.linescore.inning[4].home, games.linescore.inning[5].home, games.linescore.inning[6].home, games.linescore.inning[7].home, games.linescore.inning[8].home) }}</span>
                         </div>
                     </mat-grid-tile>
                     <mat-grid-tile>
                         <div>
-                            <span class="score">{{ games.score2 }}</span>
+                            <span class="score">{{ sumScore(games.linescore.inning[0].away, games.linescore.inning[1].away, games.linescore.inning[2].away,
+                                games.linescore.inning[3].away, games.linescore.inning[4].away, games.linescore.inning[5].away,
+                                games.linescore.inning[6].away, games.linescore.inning[7].away, games.linescore.inning[8].away) }}</span>
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>
