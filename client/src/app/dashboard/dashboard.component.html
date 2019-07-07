@@ -28,7 +28,7 @@
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>
-                <span class="span">Inning: {{ games.status.inning_state.substring(0, 3) }} {{ games.status.inning }}</span>
+                <span class="span">Inning: {{ setInning(games.status.inning_state, games.status.inning, games.status.outs) }}</span>
                 <span class="span">Outs: {{ games.status.outs }}</span>
             </mat-card-content>
         </mat-card>

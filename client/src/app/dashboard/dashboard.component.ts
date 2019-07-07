@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   //  this.gamesDisplayed = this.mockData.getGames();
-    this.data.getGamesByDate('2019', '07', '04').subscribe(data => {
+    this.data.getGamesByDate('2019', '07', '06').subscribe(data => {
       this.gamesDisplayed = data.data.games.game;
     });
   }
@@ -51,5 +51,9 @@ export class DashboardComponent implements OnInit {
 
     console.log(`Away Result: ${result}`);
     return result;
+  }
+
+  setInning(inningStatus: string, inning: number) {
+    return `${inningStatus.substring(0, 3)} ${inning}`;
   }
 }
