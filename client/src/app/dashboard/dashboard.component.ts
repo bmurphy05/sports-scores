@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { Count } from '../classes/count';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,15 +18,38 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  sumScore(scores: number[]): number {
+  sumHomeScore(scores: Count[]): number {
     let result = 0;
 
     for(let i = 0; i < scores.length; i++) {
-      console.log(`Iteration: ${i} Runs: ${scores[i]}`);
-      result = parseInt(result.toString(), 10) + parseInt(scores[i].toString(), 10);
+      console.log(`HOME -> Pre Result: ${result}  Score: ${scores[i].home}`);
+      let temp = parseInt(result.toString(), 10) + parseInt(scores[i].home.toString(), 10);
+      if (Number.isNaN(temp)) {
+        console.log('Is NAN');
+      } else {
+        result = temp;
+      }
     }
 
-    console.log(`Result: ${result}`);
+    console.log(`Home Result: ${result}`);
+    return result;
+  }
+
+
+  sumAwayScore(scores: Count[]): number {
+    let result = 0;
+
+    for(let i = 0; i < scores.length; i++) {
+      console.log(`AWAY -> Pre Result: ${result}  Score: ${scores[i].away}`);
+      let temp = parseInt(result.toString(), 10) + parseInt(scores[i].away.toString(), 10);
+      if (Number.isNaN(temp)) {
+        console.log('Is NAN');
+      } else {
+        result = temp;
+      }
+    }
+
+    console.log(`Away Result: ${result}`);
     return result;
   }
 }
