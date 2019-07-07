@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-  //  this.gamesDisplayed = this.mockData.getGames();
+    //  this.gamesDisplayed = this.mockData.getGames();
     this.data.getGamesByDate('2019', '07', '06').subscribe(data => {
       this.gamesDisplayed = data.data.games.game;
     });
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   sumHomeScore(scores: Count[]): number {
     let result = 0;
 
-    for(let i = 0; i < scores.length; i++) {
+    for (let i = 0; i < scores.length; i++) {
       console.log(`HOME -> Pre Result: ${result}  Score: ${scores[i].home}`);
       let temp = parseInt(result.toString(), 10) + parseInt(scores[i].home.toString(), 10);
       if (Number.isNaN(temp)) {
@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
   sumAwayScore(scores: Count[]): number {
     let result = 0;
 
-    for(let i = 0; i < scores.length; i++) {
+    for (let i = 0; i < scores.length; i++) {
       console.log(`AWAY -> Pre Result: ${result}  Score: ${scores[i].away}`);
       let temp = parseInt(result.toString(), 10) + parseInt(scores[i].away.toString(), 10);
       if (Number.isNaN(temp)) {
