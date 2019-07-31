@@ -1,0 +1,13 @@
+.datepicker-container {
+  width: 100%;
+  padding: 10px;
+  align-content: center;
+}
+
+.datepicker {
+  color: purple;
+  font-size: 16px;
+  min-width: 100px;
+  height: 50px;
+  border-radius: 10px;
+}

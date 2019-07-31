@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private data: DataService) { }
 
   onClick() {
-    this.data.getGamesByDate('2019', '07', '04').subscribe(data => {
+    this.data.getGamesByDate('2019', '07', '30').subscribe(data => {
       console.log(`Teams: ${JSON.stringify(data.data.games.game[1].home_team_city)}
         ${JSON.stringify(data.data.games.game[1].home_team_name)} -
         ${JSON.stringify(data.data.games.game[1].away_team_city)} ${JSON.stringify(data.data.games.game[1].away_team_name)}`);

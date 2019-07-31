@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     //  this.gamesDisplayed = this.mockData.getGames();
-    this.data.getGamesByDate('2019', '07', '06').subscribe(data => {
+    this.data.getGamesByDate('2019', '07', '30').subscribe(data => {
       this.gamesDisplayed = data.data.games.game;
     });
   }
@@ -21,15 +21,15 @@ export class DashboardComponent implements OnInit {
   sumHomeScore(scores: Count[]): number {
     let result = 0;
 
-    for (let i = 0; i < scores.length; i++) {
-      console.log(`HOME -> Pre Result: ${result}  Score: ${scores[i].home}`);
-      let temp = parseInt(result.toString(), 10) + parseInt(scores[i].home.toString(), 10);
+    scores.forEach(game => {
+      console.log(`HOME -> Pre Result: ${result}  Score: ${game.home}`);
+      let temp = parseInt(result.toString(), 10) + parseInt(game.home.toString(), 10);
       if (Number.isNaN(temp)) {
         console.log('Is NAN');
       } else {
         result = temp;
       }
-    }
+    })
 
     console.log(`Home Result: ${result}`);
     return result;
@@ -39,15 +39,15 @@ export class DashboardComponent implements OnInit {
   sumAwayScore(scores: Count[]): number {
     let result = 0;
 
-    for (let i = 0; i < scores.length; i++) {
-      console.log(`AWAY -> Pre Result: ${result}  Score: ${scores[i].away}`);
-      let temp = parseInt(result.toString(), 10) + parseInt(scores[i].away.toString(), 10);
+    scores.forEach(game => {
+      console.log(`Away -> Pre Result: ${result}  Score: ${game.away}`);
+      let temp = parseInt(result.toString(), 10) + parseInt(game.away.toString(), 10);
       if (Number.isNaN(temp)) {
         console.log('Is NAN');
       } else {
         result = temp;
       }
-    }
+    })
 
     console.log(`Away Result: ${result}`);
     return result;
