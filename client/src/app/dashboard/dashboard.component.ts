@@ -27,16 +27,12 @@ export class DashboardComponent implements OnInit {
     let result = 0;
 
     scores.forEach(game => {
-      console.log(`HOME -> Pre Result: ${result}  Score: ${game.home}`);
       let temp = parseInt(result.toString(), 10) + parseInt(game.home.toString(), 10);
-      if (Number.isNaN(temp)) {
-        console.log('Is NAN');
-      } else {
+      if (!Number.isNaN(temp)) {
         result = temp;
       }
     })
 
-    console.log(`Home Result: ${result}`);
     return result;
   }
 
@@ -45,16 +41,12 @@ export class DashboardComponent implements OnInit {
     let result = 0;
 
     scores.forEach(game => {
-      console.log(`Away -> Pre Result: ${result}  Score: ${game.away}`);
       let temp = parseInt(result.toString(), 10) + parseInt(game.away.toString(), 10);
-      if (Number.isNaN(temp)) {
-        console.log('Is NAN');
-      } else {
+      if (!Number.isNaN(temp)) {
         result = temp;
       }
     })
 
-    console.log(`Away Result: ${result}`);
     return result;
   }
 
