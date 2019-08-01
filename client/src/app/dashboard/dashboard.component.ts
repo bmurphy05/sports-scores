@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { DataService } from '../shared/data.service';
 import { Count } from '../classes/count';
+import { DateService } from '../datepicker/date.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +10,15 @@ import { Count } from '../classes/count';
 })
 export class DashboardComponent implements OnInit {
   gamesDisplayed: Array<any>;
-  constructor(private data: DataService) { }
+
+  constructor(
+    private data: DataService,
+    private dateService: DateService) { }
 
   ngOnInit() {
-    //  this.gamesDisplayed = this.mockData.getGames();
-    this.data.getGamesByDate('2019', '07', '30').subscribe(data => {
+    const date = this.dateService.getDate();
+    console.log('Date: ' + JSON.stringify(date));
+    this.data.getGamesByDate(date.year, date.month, date.day).subscribe(data => {
       this.gamesDisplayed = data.data.games.game;
     });
   }
