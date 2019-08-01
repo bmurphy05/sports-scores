@@ -18,8 +18,6 @@ export class DatepickerComponent implements OnInit {
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    console.log(`Event: ${event.value}`);
-
     let dayDate = event.value.getDate();
     let day = '';
     let monthDate = event.value.getMonth();
@@ -43,7 +41,7 @@ export class DatepickerComponent implements OnInit {
       month: month,
       day: day
     }
-    
+
     this.dateService.changeDate(fullDate);
   }
 }

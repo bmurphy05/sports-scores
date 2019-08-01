@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DateService {
-  private date: any;
+  public date: any;
 
   setInitialDate(): void {
     this.date = this.getCurrentDate();
@@ -14,7 +15,7 @@ export class DateService {
     return this.date;
   }
 
-  changeDate(date): string {
+  changeDate(date): any {
     this.date = date;
     return this.date;
   }
