@@ -24,10 +24,25 @@ export class DateService {
     let dd = today.getDate();
     let mm = today.getMonth() + 1;
     let yyyy = today.getFullYear();
+    let day = '';
+    let month = '';
+
+    if (dd.toString().length === 1) {
+      day = `0${dd.toString()}`;
+    } else {
+      day = dd.toString();
+    }
+
+    if (mm.toString().length === 1) {
+      month = `0${mm.toString()}`;
+    } else {
+      month = mm.toString();
+    }
+
     let current = {
       year: yyyy.toString(),
-      month: mm.toString(),
-      day: dd.toString()
+      month: month,
+      day: day
     }
     return current;
   }
