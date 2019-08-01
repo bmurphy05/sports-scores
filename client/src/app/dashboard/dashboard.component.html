@@ -1,36 +1,37 @@
 <div fxLayout="row wrap" fxFlex.md="70" class="card-deck-container mat-elevation-z4" fxLayoutGap="0.5%"
-    fxLayoutAlign="center">
-    <div fxFlex *ngFor="let games of gamesDisplayed" class="card-item">
-        <mat-card class="game-card">
-            <mat-card-header class="card-header">
-                <mat-card-title>MLB</mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="status-container">
-                <mat-grid-list cols="2" rowHeight="2:1">
-                    <mat-grid-tile>
-                        <div>
-                            <span class="team">{{ games.home_name_abbrev }}</span>
-                        </div>
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <div>
-                            <span class="team">{{ games.away_name_abbrev }}</span>
-                        </div>
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <div>
-                            <span class="score">{{ sumHomeScore(games.linescore.inning) }}</span>
-                        </div>
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <div>
-                            <span class="score">{{ sumAwayScore(games.linescore.inning) }}</span>
-                        </div>
-                    </mat-grid-tile>
-                </mat-grid-list>
-                <span class="span">Inning: {{ setInning(games.status.inning_state, games.status.inning, games.status.outs) }}</span>
-                <span class="span">Outs: {{ games.status.outs }}</span>
-            </mat-card-content>
-        </mat-card>
-    </div>
+  fxLayoutAlign="center">
+  <div fxFlex *ngFor="let games of gamesDisplayed" class="card-item">
+    <mat-card class="game-card">
+      <mat-card-header class="card-header">
+        <mat-card-title>MLB</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="status-container">
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile>
+            <div>
+              <span class="team">{{ games.home_name_abbrev }}</span>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div>
+              <span class="team">{{ games.away_name_abbrev }}</span>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div>
+              <span class="score">{{ sumHomeScore(games.linescore.inning) }}</span>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div>
+              <span class="score">{{ sumAwayScore(games.linescore.inning) }}</span>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <span class="span">Inning:
+          {{ setInning(games.status.inning_state, games.status.inning, games.status.outs) }}</span>
+        <span class="span">Outs: {{ games.status.outs }}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

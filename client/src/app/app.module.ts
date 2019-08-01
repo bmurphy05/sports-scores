@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { DatepickerComponent } from './datepicker/datepicker.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     NavbarComponent,
     DashboardComponent,
     GameDetailComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    DatepickerComponent
   ],
   imports: [
     BrowserModule,
