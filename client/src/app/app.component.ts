@@ -10,10 +10,11 @@ import { DateService } from './datepicker/date.service';
 export class AppComponent implements OnInit {
   title = 'client';
 
-  constructor(private data: DataService,
+  constructor(
+    private data: DataService,
     private dateService: DateService) { }
 
   ngOnInit() {
-    this.dateService.setInitialDate();
+    this.dateService.changeDate(this.dateService.getCurrentDate());
   }
 }

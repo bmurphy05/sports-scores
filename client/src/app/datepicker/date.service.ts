@@ -1,30 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { DateClass } from '../classes/date';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DateService {
-  public date: any;
+  date: DateClass;
+  $date = new BehaviorSubject(this.date);
 
-  setInitialDate(): void {
-    this.date = this.getCurrentDate();
-  }
-
-  getDate(): any {
-    return this.date;
-  }
-
-  changeDate(date): any {
+  changeDate(date): void {
     this.date = date;
-    return this.date;
+    this.$date.next(this.date);
   }
 
-  getCurrentDate(): any {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-    let yyyy = today.getFullYear();
+  getCurrentDate(): DateClass {
+    const today = new Date();
+    const dd = today.getDate();
+    const mm = today.getMonth() + 1;
+    const yyyy = today.getFullYear();
     let day = '';
     let month = '';
 
@@ -40,11 +34,8 @@ export class DateService {
       month = mm.toString();
     }
 
-    let current = {
-      year: yyyy.toString(),
-      month: month,
-      day: day
-    }
+    const current = new DateClass(yyyy.toString(), month, day);
+
     return current;
   }
 }

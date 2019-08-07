@@ -9,7 +9,7 @@ import { DateService } from './date.service';
 })
 export class DatepickerComponent implements OnInit {
   startDate: Date;
-  
+
   constructor(private dateService: DateService) {
     this.startDate = new Date(1990, 0, 1);
   }
@@ -18,9 +18,9 @@ export class DatepickerComponent implements OnInit {
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    let dayDate = event.value.getDate();
+    const dayDate = event.value.getDate();
     let day = '';
-    let monthDate = event.value.getMonth();
+    const monthDate = event.value.getMonth() + 1;
     let month = '';
     const year = event.value.getFullYear();
 
@@ -38,9 +38,9 @@ export class DatepickerComponent implements OnInit {
 
     const fullDate = {
       year: year.toString(),
-      month: month,
-      day: day
-    }
+      month,
+      day
+    };
 
     this.dateService.changeDate(fullDate);
   }
