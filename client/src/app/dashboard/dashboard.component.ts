@@ -77,13 +77,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     let result = '';
 
     if (status === 'Final') {
-      result = `${inningStatus.substring(0, 3)} ${inning}`;
-    } else if (status === 'Pre-Game'){
-      result = `${inningStatus.substring(0, 3)} 1`;
+      result = 'F';
+    } else if (status === 'Pre-Game') {
+      result = `PRE`;
     } else if (status === 'Preview') {
-      result = `Top 1`;
-    } else {
+      result = `PRE`;
+    } else if (status === 'Postponed' || status.includes('Suspended')) {
       result = 'PPD';
+    } else {
+      result = `${inningStatus.substring(0, 3)} ${inning}}`;
     }
 
     return result;
