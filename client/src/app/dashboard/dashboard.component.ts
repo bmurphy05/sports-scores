@@ -30,36 +30,44 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  sumHomeScore(scores: Count[], status: string): number {
+  sumHomeScore(games: any): number {
     let result = 0;
+    let scores = Array<Count>();
 
-    if (status === 'Postponed') {
+    if (games.status.status === 'Postponed') {
       result = 0;
     } else {
-      Array.from(scores).forEach(game => {
-        const temp = parseInt(result.toString(), 10) + parseInt(game.home.toString(), 10);
-        if (!Number.isNaN(temp)) {
-          result = temp;
-        }
-      });
+      if (games.hasOwnProperty('linescore')) {
+        scores = games.linescore.inning;
+        Array.from(scores).forEach(game => {
+          const temp = parseInt(result.toString(), 10) + parseInt(game.home.toString(), 10);
+          if (!Number.isNaN(temp)) {
+            result = temp;
+          }
+        });
+      }
     }
 
     return result;
   }
 
 
-  sumAwayScore(scores: Count[], status: string): number {
+  sumAwayScore(games: any): number {
     let result = 0;
+    let scores = Array<Count>();
 
-    if (status === 'Postponed') {
+    if (games.status.status === 'Postponed') {
       result = 0;
     } else {
-      Array.from(scores).forEach(game => {
-        const temp = parseInt(result.toString(), 10) + parseInt(game.away.toString(), 10);
-        if (!Number.isNaN(temp)) {
-          result = temp;
-        }
-      });
+      if (games.hasOwnProperty('linescore')) {
+        scores = games.linescore.inning;
+        Array.from(scores).forEach(game => {
+          const temp = parseInt(result.toString(), 10) + parseInt(game.away.toString(), 10);
+          if (!Number.isNaN(temp)) {
+            result = temp;
+          }
+        });
+      }
     }
 
     return result;
@@ -68,12 +76,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   setInning(inningStatus: string, inning: number, status: string) {
     let result = '';
 
-    if (status !== 'Final') {
-      result = 'PPD';
-    } else {
+    if (status === 'Final') {
       result = `${inningStatus.substring(0, 3)} ${inning}`;
+    } else if (status === 'Pre-Game'){
+      result = `${inningStatus.substring(0, 3)} 1`;
+    } else if (status === 'Preview') {
+      result = `Top 1`;
+    } else {
+      result = 'PPD';
     }
-    console.log(result);
+
     return result;
   }
 
