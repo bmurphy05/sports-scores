@@ -1,59 +1,96 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DataService } from '../shared/data.service';
 import { Count } from '../classes/count';
+import { DateService } from '../datepicker/date.service';
+import { DateClass } from '../classes/date';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   gamesDisplayed: Array<any>;
-  constructor(private data: DataService) { }
+  date: DateClass;
+  dateSub: Subscription;
+  gameSub: Subscription;
+
+  constructor(
+    private data: DataService,
+    private dateService: DateService) { }
 
   ngOnInit() {
-    //  this.gamesDisplayed = this.mockData.getGames();
-    this.data.getGamesByDate('2019', '07', '06').subscribe(data => {
-      this.gamesDisplayed = data.data.games.game;
+    this.dateSub = this.dateService.$date.subscribe(date => {
+      this.date = date;
+      console.log('Date: ' + JSON.stringify(this.date));
+      this.gameSub = this.data.getGamesByDate(this.date).subscribe(data => {
+        this.gamesDisplayed = data.data.games.game;
+      });
     });
   }
 
-  sumHomeScore(scores: Count[]): number {
+  sumHomeScore(games: any): number {
     let result = 0;
+    let scores = Array<Count>();
 
-    for (let i = 0; i < scores.length; i++) {
-      console.log(`HOME -> Pre Result: ${result}  Score: ${scores[i].home}`);
-      let temp = parseInt(result.toString(), 10) + parseInt(scores[i].home.toString(), 10);
-      if (Number.isNaN(temp)) {
-        console.log('Is NAN');
-      } else {
-        result = temp;
+    if (games.status.status === 'Postponed') {
+      result = 0;
+    } else {
+      if (games.hasOwnProperty('linescore')) {
+        scores = games.linescore.inning;
+        Array.from(scores).forEach(game => {
+          const temp = parseInt(result.toString(), 10) + parseInt(game.home.toString(), 10);
+          if (!Number.isNaN(temp)) {
+            result = temp;
+          }
+        });
       }
     }
 
-    console.log(`Home Result: ${result}`);
     return result;
   }
 
 
-  sumAwayScore(scores: Count[]): number {
+  sumAwayScore(games: any): number {
     let result = 0;
+    let scores = Array<Count>();
 
-    for (let i = 0; i < scores.length; i++) {
-      console.log(`AWAY -> Pre Result: ${result}  Score: ${scores[i].away}`);
-      let temp = parseInt(result.toString(), 10) + parseInt(scores[i].away.toString(), 10);
-      if (Number.isNaN(temp)) {
-        console.log('Is NAN');
-      } else {
-        result = temp;
+    if (games.status.status === 'Postponed') {
+      result = 0;
+    } else {
+      if (games.hasOwnProperty('linescore')) {
+        scores = games.linescore.inning;
+        Array.from(scores).forEach(game => {
+          const temp = parseInt(result.toString(), 10) + parseInt(game.away.toString(), 10);
+          if (!Number.isNaN(temp)) {
+            result = temp;
+          }
+        });
       }
     }
 
-    console.log(`Away Result: ${result}`);
     return result;
   }
 
-  setInning(inningStatus: string, inning: number) {
-    return `${inningStatus.substring(0, 3)} ${inning}`;
+  setInning(inningStatus: string, inning: number, status: string) {
+    let result = '';
+
+    if (status === 'Final') {
+      result = `${inningStatus.substring(0, 3)} ${inning}`;
+    } else if (status === 'Pre-Game'){
+      result = `${inningStatus.substring(0, 3)} 1`;
+    } else if (status === 'Preview') {
+      result = `Top 1`;
+    } else {
+      result = 'PPD';
+    }
+
+    return result;
+  }
+
+  ngOnDestroy() {
+    this.dateSub.unsubscribe();
+    this.gameSub.unsubscribe();
   }
 }
