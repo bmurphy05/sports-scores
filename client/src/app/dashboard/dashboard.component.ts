@@ -30,36 +30,51 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  sumHomeScore(scores: Count[]): number {
+  sumHomeScore(scores: Count[], status: string): number {
     let result = 0;
 
-    for (let i = 0; i < scores.length; i++) {
-      let temp = parseInt(result.toString(), 10) + parseInt(scores[i].home.toString(), 10);
-      if (Number.isNaN(temp)) {
-      } else {
-        result = temp;
-      }
-    }
-    return result;
-  }
-
-
-  sumAwayScore(scores: Count[]): number {
-    let result = 0;
-
-    for (let i = 0; i < scores.length; i++) {
-      let temp = parseInt(result.toString(), 10) + parseInt(scores[i].away.toString(), 10);
-      if (Number.isNaN(temp)) {
-      } else {
-        result = temp;
-      }
+    if (status === 'Postponed') {
+      result = 0;
+    } else {
+      Array.from(scores).forEach(game => {
+        const temp = parseInt(result.toString(), 10) + parseInt(game.home.toString(), 10);
+        if (!Number.isNaN(temp)) {
+          result = temp;
+        }
+      });
     }
 
     return result;
   }
 
-  setInning(inningStatus: string, inning: number) {
-    return `${inningStatus.substring(0, 3)} ${inning}`;
+
+  sumAwayScore(scores: Count[], status: string): number {
+    let result = 0;
+
+    if (status === 'Postponed') {
+      result = 0;
+    } else {
+      Array.from(scores).forEach(game => {
+        const temp = parseInt(result.toString(), 10) + parseInt(game.away.toString(), 10);
+        if (!Number.isNaN(temp)) {
+          result = temp;
+        }
+      });
+    }
+
+    return result;
+  }
+
+  setInning(inningStatus: string, inning: number, status: string) {
+    let result = '';
+
+    if (status !== 'Final') {
+      result = 'PPD';
+    } else {
+      result = `${inningStatus.substring(0, 3)} ${inning}`;
+    }
+    console.log(result);
+    return result;
   }
 
   ngOnDestroy() {

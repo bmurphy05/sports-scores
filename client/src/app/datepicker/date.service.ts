@@ -16,7 +16,7 @@ export class DateService {
 
   getCurrentDate(): DateClass {
     const today = new Date();
-    const dd = today.getDate();
+    const dd = today.getDate()-1;
     const mm = today.getMonth() + 1;
     const yyyy = today.getFullYear();
     let day = '';
