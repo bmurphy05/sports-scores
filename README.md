@@ -9,6 +9,10 @@ The data source is a deprecated MLB Score API found on the MLB Hackathon site: h
 * Angular
 
  ### Running
+* Navigate into the client folder
+```
+$ cd client
+```
 * Install Dependencies:
     ```
     $ npm install
@@ -16,5 +20,6 @@ The data source is a deprecated MLB Score API found on the MLB Hackathon site: h
 * Run App:
 ```
 $ ng serve
+```
 
     
