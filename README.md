@@ -14,12 +14,16 @@ The data source is a deprecated MLB Score API found on the MLB Hackathon site: h
 $ cd client
 ```
 * Install Dependencies:
-    ```
-    $ npm install
-    ```
+```
+$ npm install
+```
 * Run App:
 ```
 $ ng serve
 ```
+
+### Current Issues
+* Game Detail not built
+* Search Bar not built
 
     
